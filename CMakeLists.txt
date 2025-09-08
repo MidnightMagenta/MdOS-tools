@@ -2,20 +2,15 @@ cmake_minimum_required(VERSION 3.10)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-set(ProjectName "project_name")
-set(Subsystem "CONSOLE")
+set(ProjectName "MD-Sign")
+set(CMAKE_INSTALL_PREFIX /usr/local)
+set(version 0.1a)
+find_library(MONOCYPHER_LIB monocypher)
 
-project("${ProjectName}" VERSION 0.1)
-set(CMAKE_CXX_STANDARD 23)
-
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-include(filters)
-
-add_subdirectory(dependencies)
-
-#app executable
-add_executable("${ProjectName}"
-        #src files
-        src/main.cpp
-        #header files
+add_executable("mkbootcfg" 
+    #src
+    mkbootcfg/src/mkbootcfg.cpp
+    #headers
 )
+
+install(TARGETS mkbootcfg RUNTIME DESTINATION bin)
