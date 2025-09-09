@@ -1,7 +1,7 @@
 #ifndef MDCF_TYPES_H
 #define MDCF_TYPES_H
 
-#include "../include/crc32.hpp"
+#include <crc32.hpp>
 #include <string>
 #include <vector>
 #include <cstdint>

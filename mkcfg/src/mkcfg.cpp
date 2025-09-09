@@ -1,12 +1,12 @@
-#include "../include/front.hpp"
-#include "../include/types.hpp"
-#include "../include/uuid.hpp"
 #include "../include/back.hpp"
+#include "../include/front.hpp"
 #include <cstdint>
 #include <cstring>
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <types.hpp>
+#include <uuid.hpp>
 #include <vector>
 
 int main(int argc, char **argv) {
@@ -35,6 +35,11 @@ int main(int argc, char **argv) {
 			std::cerr << "Unknown parameter " << argv[i] << "\n";
 			return EXIT_FAILURE;
 		}
+	}
+
+	if(inputPath.empty() || outputPath.empty()){
+		std::cerr << "Invalid paramters\n";
+		return EXIT_FAILURE;
 	}
 
 	std::ifstream inFile(inputPath);

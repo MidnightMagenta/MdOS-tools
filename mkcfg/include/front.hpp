@@ -1,7 +1,7 @@
 #ifndef MDCF_FRONT_HPP
 #define MDCF_FRONT_HPP
 
-#include "../include/types.hpp"
+#include <types.hpp>
 #include <fstream>
 #include <string>
 #include <vector>

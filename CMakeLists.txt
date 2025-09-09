@@ -7,19 +7,34 @@ set(CMAKE_INSTALL_PREFIX /usr/local)
 set(version 0.1a)
 find_library(MONOCYPHER_LIB monocypher)
 
-add_executable("mkbootcfg" 
+add_library(mdos-tools-common STATIC
     #src
-    mkbootcfg/src/mkbootcfg.cpp
-    mkbootcfg/src/crc32.cpp
-    mkbootcfg/src/uuid.cpp
-    mkbootcfg/src/front.cpp
-    mkbootcfg/src/back.cpp
+    common/src/crc32.cpp
+    common/src/uuid.cpp
     #headers
-    mkbootcfg/include/crc32.hpp
-    mkbootcfg/include/uuid.hpp
-    mkbootcfg/include/types.hpp
-    mkbootcfg/include/front.hpp
-    mkbootcfg/include/back.hpp
+    common/include/types.hpp
+    common/include/crc32.hpp
+    common/include/uuid.hpp
 )
 
-install(TARGETS mkbootcfg RUNTIME DESTINATION bin)
+add_executable(mdostools-mkcfg
+    #src
+    mkcfg/src/mkcfg.cpp
+    mkcfg/src/front.cpp
+    mkcfg/src/back.cpp
+    #headers
+    mkcfg/include/front.hpp
+    mkcfg/include/back.hpp
+)
+
+target_link_libraries(mdostools-mkcfg PUBLIC mdos-tools-common)
+target_include_directories(mdostools-mkcfg PRIVATE common/include)
+
+add_executable(mdostools-verifycfg
+    verifycfg/src/verifycfg.cpp
+)
+
+target_link_libraries(mdostools-verifycfg PUBLIC mdos-tools-common)
+target_include_directories(mdostools-verifycfg PRIVATE common/include)
+
+install(TARGETS mdostools-mkcfg mdostools-verifycfg RUNTIME DESTINATION bin)
