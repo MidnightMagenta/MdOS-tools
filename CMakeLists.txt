@@ -10,7 +10,16 @@ find_library(MONOCYPHER_LIB monocypher)
 add_executable("mkbootcfg" 
     #src
     mkbootcfg/src/mkbootcfg.cpp
+    mkbootcfg/src/crc32.cpp
+    mkbootcfg/src/uuid.cpp
+    mkbootcfg/src/front.cpp
+    mkbootcfg/src/back.cpp
     #headers
+    mkbootcfg/include/crc32.hpp
+    mkbootcfg/include/uuid.hpp
+    mkbootcfg/include/types.hpp
+    mkbootcfg/include/front.hpp
+    mkbootcfg/include/back.hpp
 )
 
 install(TARGETS mkbootcfg RUNTIME DESTINATION bin)
