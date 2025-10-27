@@ -1,0 +1,6 @@
+CompileFlags:
+    CompilationDatabase: ./build/
+
+InlayHints:
+  Enabled: Yes
+  ParameterNames: No

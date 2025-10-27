@@ -1,5 +1,4 @@
 #include "../include/back.hpp"
-#include <cstring>
 
 void write_cfg(std::ofstream &f, const std::vector<Entry> &cfgEntries) {
 	std::vector<uint8_t> buffer;

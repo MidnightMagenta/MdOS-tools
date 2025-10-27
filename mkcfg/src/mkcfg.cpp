@@ -1,6 +1,5 @@
 #include "../include/back.hpp"
 #include "../include/front.hpp"
-#include <cstdint>
 #include <cstring>
 #include <fstream>
 #include <iostream>
@@ -21,13 +20,13 @@ int main(int argc, char **argv) {
 	for (int i = 1; i < argc; i++) {
 		if (std::strcmp("-i", argv[i]) == 0) {
 			if (!inputPath.empty()) {
-				std::cerr << "Invalid parameters\n";
+				std::cerr << "Invalid parameters - input path not empty while specifying input path\n";
 				return EXIT_FAILURE;
 			}
 			inputPath = std::string(argv[++i]);
 		} else if (std::strcmp("-o", argv[i]) == 0) {
 			if (!outputPath.empty()) {
-				std::cerr << "Invalid parameters\n";
+				std::cerr << "Invalid parameters - output path not empty while specifying output path\n";
 				return EXIT_FAILURE;
 			}
 			outputPath = std::string(argv[++i]);
@@ -37,8 +36,12 @@ int main(int argc, char **argv) {
 		}
 	}
 
-	if(inputPath.empty() || outputPath.empty()){
-		std::cerr << "Invalid paramters\n";
+	if(inputPath.empty()){
+		std::cerr << "Invalid paramters - input path must not be empty\n";
+		return EXIT_FAILURE;
+	}
+	if(outputPath.empty()){
+		std::cerr << "Invalid paramters - output path must not be empty\n";
 		return EXIT_FAILURE;
 	}
 

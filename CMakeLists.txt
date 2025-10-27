@@ -5,6 +5,9 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set(ProjectName "MD-Sign")
 set(CMAKE_INSTALL_PREFIX /usr/local)
 set(version 0.1a)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+project(${ProjectName})
 find_library(MONOCYPHER_LIB monocypher)
 
 add_library(mdos-tools-common STATIC
@@ -37,4 +40,11 @@ add_executable(mdostools-verifycfg
 target_link_libraries(mdostools-verifycfg PUBLIC mdos-tools-common)
 target_include_directories(mdostools-verifycfg PRIVATE common/include)
 
-install(TARGETS mdostools-mkcfg mdostools-verifycfg RUNTIME DESTINATION bin)
+add_executable(mdostools-ppc
+    ppc/src/ppc.cpp
+)
+
+target_link_libraries(mdostools-ppc PUBLIC mdos-tools-common)
+target_include_directories(mdostools-ppc PRIVATE common/include dependencies/include)
+
+install(TARGETS mdostools-mkcfg mdostools-verifycfg mdostools-ppc RUNTIME DESTINATION bin)
